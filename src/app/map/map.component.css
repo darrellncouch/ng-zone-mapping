@@ -1,0 +1,31 @@
+#filterBox {
+  max-width: 20rem;
+  min-width: 20rem;
+  padding-right: 0;
+  padding-left: 0;
+  height: 90vh;
+  padding-left: 0;
+  margin-left: 1em;
+  margin-top: .75em;
+  z-index: 10;
+}
+
+@media screen and (max-width: 1330px) and (min-width: 520px) {
+    #filterBox {
+      margin-left: 0em;
+    }
+}
+
+#projectionTable{
+  overflow-y: scroll;
+  padding: 0;
+}
+ h6{
+   padding: .20em;
+   border-radius: 3px;
+   padding-left: .25em;
+ }
+
+ i.material-icons {
+     vertical-align: middle;
+}

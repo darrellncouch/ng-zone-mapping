@@ -1,0 +1,373 @@
+<div class="row">
+  <div class="d-none d-sm-block col-md-4 col-lg-3" style=" margin-right: 0">
+    <!-- <div class="d-none d-sm-block col-md-4 col-lg-3" style="padding-left: 0"> -->
+      <div class="col-sm-12 card white" id="filterBox">
+        <div class="card-header">
+          <p style="margin: 0;color: #6088c9;">Filter</p>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-auto">
+                <p>Office:</p>
+              </div>
+              <div class="col">
+                <select class="form-control" id="exampleSelect1" (change)='getOfficeInfo($event.target.value)'>
+                  <option selected disabled>Select an office</option>
+                  <option *ngFor="let item of offices" value={{item.id}}>{{item.office}}</option>
+                </select>
+              </div>
+            </div>
+
+            <form (ngSubmit)='handleSubmit($event)'>
+              <div class="row">
+                <div class="col-sm-12">
+                  <fieldset class="form-group" style="margin-bottom: 0px; margin-top: 0px;">
+                    <p>Customer status:</p>
+                    <div class="form-check" (click)="statusFilter($event.target.value)">
+                      <label class="form-check-label" style="padding-right: 2em">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="active" checked="" >
+                        <p>Active</p>
+                      </label>
+                      <label class="form-check-label" style="padding-right: 2em">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="terminated" >
+                        <p>Terminated</p>
+                      </label>
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="all" >
+                        <p>Both</p>
+                      </label>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <h6 style="background-color: #DCEDF8">Zones:</h6>
+                </div>
+              </div>
+              <div class="">
+                <fieldset class="form-group" style="max-height: 11vh; overflow-y: scroll;">
+
+                  <div class="form-check" *ngFor="let item of zones; let i = index">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value={{item.id}} (change)="zoneFilter($event.target.value, $event)">
+                        {{item.zone}}<i class="material-icons" [style.color]='colorArr[i]'>looks_one</i>
+                    </label>
+                  </div>
+
+                </fieldset>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <h6 style="background-color: #DCEDF8;">Week:</h6>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <fieldset class="form-group">
+
+                    <div class="form-check col-sm">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="1">
+                          Week 1<i class=" material-icons">looks_one</i>
+                      </label>
+                    </div>
+
+                    <div class="form-check ">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="2">
+                          Week 2<i class=" material-icons">looks_two</i>
+                      </label>
+                    </div>
+
+                    <div class="form-check ">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="3">
+                          Week 3<i class=" material-icons">looks_3</i>
+                      </label>
+                    </div>
+
+                    <div class="form-check ">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" value="4">
+                          Week 4<i class=" material-icons">looks_4</i>
+                      </label>
+                    </div>
+
+                  </fieldset>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-sm">
+                  <h6 style="background-color: #DCEDF8">Month:</h6>
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="1">
+                        Jan
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="2">
+                        Feb
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="3">
+                        Mar
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="4">
+                        Apr
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="5">
+                        May
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="6">
+                        Jun
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="7">
+                        Jul
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="8">
+                        Aug
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="9">
+                        Sep
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="10">
+                        Oct
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="11">
+                        Nov
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-check disabled">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox" value="12">
+                        Dec
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm">
+                  <h6 style="background-color: #DCEDF8">Service Type:</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group" style="width: 90%; margin-left: 1em; margin-top: .5em">
+                  <select class="form-control" id="exampleSelect1">
+                    <option value="all">All</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Every Other Month">Every Other Month</option>
+                    <option value="Quarterly">Quarterly</option>
+                    <option value="Seasonal">Seasonal</option>
+                    <option value="5 Treatment Plan">5TP</option>
+                    <option value="7 treatment Plan">7TP</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12" style="margin-top: 0  ;">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">Load Customers</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <!-- </div> -->
+
+  </div>
+  <div class=" col-sm-8 col-md-8 col-lg-9">
+
+    <!-- Map -->
+
+    <!-- *ngFor="#item of customers" -->
+
+
+    <agm-map style='width: 100%; height: 60vh;' [latitude]="latitude" [longitude]="longitude">
+      <agm-marker *ngFor="let item of coordsArr" [latitude]='item.latitude' [longitude]='item.longitude'>
+        <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+          <ng-template>
+            customer: {{item.customer}}
+          </ng-template>
+        </agm-snazzy-info-window>
+      </agm-marker>
+    </agm-map>
+
+
+    <div class="row" style="margin-top: .75em; height: 30vh;">
+      <div class="col-sm-12">
+        <div class="card sm-12" style="height: 100%;">
+          <div class="card-header">
+            <p style="margin: 0;color: #6088c9;">Recurring services over the next four months</p>
+          </div>
+          <div class="card-body" id="projectionTable">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Zone</th>
+                  <th scope="col">Current</th>
+                  <th scope="col">Second</th>
+                  <th scope="col">Third</th>
+                  <th scope="col">Fourth</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="table-active">
+                  <th scope="row">Active</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th scope="row">Default</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td></td>
+                </tr>
+                <tr class="table-primary">
+                  <th scope="row">Primary</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td></td>
+                </tr>
+                <tr class="table-secondary">
+                  <th scope="row">Secondary</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td></td>
+                </tr>
+                <tr class="table-success">
+                  <th scope="row">Success</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td></td>
+                </tr>
+                <tr class="table-danger">
+                  <th scope="row">Danger</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td></td>
+                </tr>
+                <tr class="table-warning">
+                  <th scope="row">Warning</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td></td>
+                </tr>
+                <tr class="table-info">
+                  <th scope="row">Info</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td></td>
+                </tr>
+                <tr class="table-light">
+                  <th scope="row">Light</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td></td>
+                </tr>
+                <tr class="table-dark">
+                  <th scope="row">Dark</th>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td>Column content</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

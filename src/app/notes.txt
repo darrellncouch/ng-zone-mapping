@@ -1,0 +1,17 @@
+Customer table
+  id: int (auto generates starting at 100000)
+  branch: id (Relation to offices table )
+  status: string,
+  zone: int(Relation to zones table),
+  service type: string,
+  service months: int( 1-12 = jan-dec),
+
+}
+
+Offices table{
+
+}
+
+zone table{
+
+}

@@ -1,0 +1,237 @@
+
+      <div class="col-sm-12 card white" style=" max-width: 20rem; min-width: 20rem; padding-right: 0; height: 90vh;  padding-left: 0; margin-left: 1%; margin-top: .5em; z-index: 10;">
+        <div class="card-header">
+          <p style="margin: 0;">Filter</p>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-auto">
+                <p>Office:</p>
+              </div>
+              <div class="col">
+                <select class="form-control" id="exampleSelect1" (change)='getOfficeInfo($event.target.value)'>
+                  <option selected disabled>Select an office</option>
+                  <option *ngFor="let item of offices" value={{item.id}}>{{item.office}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm">
+                <fieldset class="form-group">
+                  <p>Customer status:</p>
+                  <div class="form-check">
+                    <label class="form-check-label" style="padding-right: 2em">
+                      <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked="" (click)="filterCustomers('active')">
+                      <p>Active</p>
+                    </label>
+                    <label class="form-check-label" style="padding-right: 2em">
+                      <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2" (click)="filterCustomers('terminated')">
+                      <p>Terminated</p>
+                    </label>
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3">
+                      <p>Both</p>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm">
+                <h6>Zones:</h6>
+              </div>
+            </div>
+            <div class="">
+              <fieldset class="form-group">
+
+                <div class="form-check" *ngFor="let item of zones">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value={{item.id}}>
+                      {{item.zone}}
+                  </label>
+                </div>
+
+              </fieldset>
+            </div>
+
+            <div class="row">
+              <div class="col-sm">
+                <h6>Week:</h6>
+              </div>
+            </div>
+            <div class="">
+
+              <fieldset class="form-group">
+
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Week 1
+                  </label>
+                </div>
+
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Week 2
+                  </label>
+                </div>
+
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Week 3
+                  </label>
+                </div>
+
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Week 4
+                  </label>
+                </div>
+
+              </fieldset>
+            </div>
+
+            <div class="row">
+              <h6>Month:</h6>
+            </div>
+            <div class="row">
+
+              <div class="col-sm-3">
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Jan
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Feb
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Mar
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Apr
+                  </label>
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="col-sm-3">
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      May
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Jun
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Jul
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Aug
+                  </label>
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="col-sm-3">
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Sep
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Oct
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Nov
+                  </label>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-check disabled">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                      Dec
+                  </label>
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+              Service Type:
+            </div>
+            <div class="row">
+              <div class="form-group" style="width: 90%; margin-left: 1em; margin-top: .5em">
+                <select class="form-control" id="exampleSelect1">
+                  <option>All</option>
+                  <option>Monthly</option>
+                  <option>Every Other Month</option>
+                  <option>quarterly</option>
+                  <option>Seasonal</option>
+                  <option>5TP</option>
+                  <option>7TP</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
