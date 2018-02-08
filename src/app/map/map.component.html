@@ -1,6 +1,5 @@
 <div class="row">
   <div class="d-none d-sm-block col-md-4 col-lg-3" style=" margin-right: 0">
-    <!-- <div class="d-none d-sm-block col-md-4 col-lg-3" style="padding-left: 0"> -->
       <div class="col-sm-12 card white" id="filterBox">
         <div class="card-header">
           <p style="margin: 0;color: #6088c9;">Filter</p>
@@ -253,21 +252,35 @@
         </div>
       </div>
 
-    <!-- </div> -->
-
   </div>
   <div class=" col-sm-8 col-md-8 col-lg-9">
 
     <!-- Map -->
 
-    <!-- *ngFor="#item of customers" -->
-
 
     <agm-map style='width: 100%; height: 60vh;' [latitude]="latitude" [longitude]="longitude">
-      <agm-marker *ngFor="let item of coordsArr" [latitude]='item.latitude' [longitude]='item.longitude'>
-        <agm-snazzy-info-window [maxWidth]="200" [closeWhenOthersOpen]="true">
+      <agm-marker   *ngFor="let item of coordsArr" [latitude]='item.latitude' [longitude]='item.longitude'>
+        <agm-snazzy-info-window [maxWidth]="1200" [maxHeight]="700" [closeWhenOthersOpen]="true">
           <ng-template>
-            customer: {{item.customer}}
+            <form  (ngSubmit)="handleUpdate($event)">
+              <div class="col">
+                <p style="margin-bottom: 0;">Zone:</p>
+                <select class="form-control" id="zone_id" style="margin-bottom: 1em;" >
+                  <option *ngFor="let zone of zones" value={{zone.id}}>{{zone.zone}}</option>
+                </select>
+              </div>
+              <div class="col">
+                <p style="margin-bottom: 0;">Service Week:</p>
+                <select class="form-control" id="service_week" >
+                  <option disabled value={{item.service_week}>Week {{item.service_week}}</option>
+                  <option value="1">Week 1</option>
+                  <option value="2">Week 2</option>
+                  <option value="3">Week 3</option>
+                  <option value="4">Week 4</option>
+                </select>
+              </div>
+              <input type="submit" name="" value="Submit">
+            </form>
           </ng-template>
         </agm-snazzy-info-window>
       </agm-marker>
@@ -292,75 +305,26 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="table-active">
-                  <th scope="row">Active</th>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td></td>
+                <tr>
+                  <th scope="row" >Goodfellas</th>
+                  <td>15/20</td>
+                  <td> 20/23</td>
+                  <td> 21/22 </td>
+                  <td> 19/26 </td>
                 </tr>
                 <tr>
-                  <th scope="row">Default</th>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td></td>
+                  <th scope="row" >Jolleyville</th>
+                  <td>23/29</td>
+                  <td> 19/24 </td>
+                  <td> 20/26 </td>
+                  <td> 21/23 </td>
                 </tr>
-                <tr class="table-primary">
-                  <th scope="row">Primary</th>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td></td>
-                </tr>
-                <tr class="table-secondary">
-                  <th scope="row">Secondary</th>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td></td>
-                </tr>
-                <tr class="table-success">
-                  <th scope="row">Success</th>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td></td>
-                </tr>
-                <tr class="table-danger">
-                  <th scope="row">Danger</th>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td></td>
-                </tr>
-                <tr class="table-warning">
-                  <th scope="row">Warning</th>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td></td>
-                </tr>
-                <tr class="table-info">
-                  <th scope="row">Info</th>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td></td>
-                </tr>
-                <tr class="table-light">
-                  <th scope="row">Light</th>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td></td>
-                </tr>
-                <tr class="table-dark">
-                  <th scope="row">Dark</th>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td>Column content</td>
-                  <td></td>
+                <tr>
+                  <th scope="row" >Southside Sprayers</th>
+                  <td> 17/19</td>
+                  <td> 20/26 </td>
+                  <td> 19/23 </td>
+                  <td> 18/20 </td>
                 </tr>
               </tbody>
             </table>
